@@ -2,7 +2,7 @@
   margin-top: 20px;
   flex-basis: calc(33.33% - 20px);
   border-radius: 5px;
-  background-color: #E7E7E7;
+  background-color: #EDEDED;
 }
 .recipe:nth-last-child(2) {
   margin-right: 30px;
