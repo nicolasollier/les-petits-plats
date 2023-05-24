@@ -4,6 +4,9 @@
   border-radius: 5px;
   background-color: #E7E7E7;
 }
+.recipe:nth-last-child(2) {
+  margin-right: 30px;
+}
 
 .recipe img {
   width: 100%;

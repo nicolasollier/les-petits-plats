@@ -1,13 +1,21 @@
-@import url('inputs.css');
-@import url('articles.css');
+@import url("inputs.css");
+@import url("articles.css");
 
 .container {
-    min-width: 1440px;
+  min-width: 1440px;
 }
 
 #recipes-section {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-bottom: 80px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 80px;
+}
+main section::after {
+  content: "";
+  flex: auto;
+}
+
+.filters-list {
+  margin-bottom: 25px;
 }

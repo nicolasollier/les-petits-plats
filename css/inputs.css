@@ -2,3 +2,31 @@
   background-color: #EDEDED !important;
   border: none !important;
 }
+
+.input-dropdown {
+  width: 170px !important;
+  height: 58px;
+  margin-right: 20px;
+  padding: 0 20px 0 20px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-image: url('/images/assets/arrow-down.svg');
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  background-size: 12px;
+}
+.input-dropdown::placeholder {
+  color: #fff;
+  opacity: 1; 
+}
+
+.input-bg-blue {
+  background-color: #3282F7;
+}
+.input-bg-green {
+  background-color: #68D9A4;
+}
+.input-bg-red {
+  background-color: #ED6454;
+}

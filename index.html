@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="application/json; charset=utf-8" />
-    
+
     <!-- CSS -->
     <link rel="stylesheet" href="/css/index.css" />
     <link
@@ -38,11 +38,16 @@
     </header>
 
     <main class="container mt-4">
-			<div id="current-items-list"></div>
-			<div id="filter-dropdowns"></div>
-			<section id="recipes-section">
-      </section>
-		</main>
+      <div id="current-items-list"></div>
+
+      <div class="filters-list">
+        <input class="input-dropdown input-bg-blue" placeholder="Ingrédient" />
+        <input class="input-dropdown input-bg-green" placeholder="Appareils" />
+        <input class="input-dropdown input-bg-red" placeholder="Ustensiles" />
+      </div>
+
+      <section id="recipes-section"></section>
+    </main>
 
     <!-- Bootstrap -->
     <script
