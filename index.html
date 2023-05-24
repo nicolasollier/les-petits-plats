@@ -4,7 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <meta http-equiv="Content-Type" content="application/json; charset=utf-8" />
+    
     <!-- CSS -->
     <link rel="stylesheet" href="/css/index.css" />
     <link
@@ -36,10 +37,11 @@
       />
     </header>
 
-    <main class="mt-4">
+    <main class="container mt-4">
 			<div id="current-items-list"></div>
 			<div id="filter-dropdowns"></div>
-			<div id="recipes-list"></div>
+			<section id="recipes-section">
+      </section>
 		</main>
 
     <!-- Bootstrap -->
@@ -48,5 +50,6 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="/js/index.js"></script>
   </body>
 </html>

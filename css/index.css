@@ -1,4 +1,13 @@
-.custom-input {
-    background-color: #EDEDED !important;
-    border: none !important;
+@import url('inputs.css');
+@import url('articles.css');
+
+.container {
+    min-width: 1440px;
+}
+
+#recipes-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 80px;
 }
