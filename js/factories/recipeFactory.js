@@ -26,7 +26,10 @@ export class RecipeFactory {
     <img class="recipe__img" src="https://via.placeholder.com/300x200.png?text=Recipe+Image" alt="${this.name} cover">
       <div class="recipe__header">
         <h2 class="recipe__title">${this.name}</h2>
-        <div class="recipe__time">${this.time} min</div>
+        <div class="recipe__time">
+          <div class="recipe__time-icon"></div>
+          ${this.time} min
+        </div>
       </div>
       <div class="recipe__body">
         <div class="recipe__ingredients">

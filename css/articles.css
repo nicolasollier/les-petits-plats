@@ -18,8 +18,12 @@
 .recipe__header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
   padding: 20px;
+}
+
+.recipe__title {
+  margin-top: 8px;
+  max-width: 230px;
 }
 
 .recipe h2 {
@@ -41,4 +45,20 @@
 
 .recipe__body div {
   max-width: 170px;
+}
+
+.recipe__time {
+  display: flex;
+  font-size: 18px;
+  align-items: center;
+}
+
+.recipe__time-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  background-image: url('/images/assets/clock.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
 }
