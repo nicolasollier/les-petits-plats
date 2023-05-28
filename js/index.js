@@ -1,4 +1,8 @@
 import { recipes } from './recipes.js';
+import { ingredients } from './ingredients.js';
+import { appliances } from './appliances.js';
+import { ustensils } from './ustensils.js';
+
 import { RecipeFactory } from './factories/recipeFactory.js';
 
 const displayRecipes = (recipes) => {
@@ -10,4 +14,5 @@ const displayRecipes = (recipes) => {
   });
 }
 
+console.log(recipes, ingredients, appliances, ustensils);
 displayRecipes(recipes);
