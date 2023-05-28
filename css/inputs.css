@@ -11,6 +11,9 @@
   border: none;
   border-radius: 5px;
   color: #fff;
+
+  transition: all 0.1s ease-in-out;
+
   background-image: url('/images/assets/arrow-down.svg');
   background-repeat: no-repeat;
   background-position: right 20px center;
@@ -29,4 +32,12 @@
 }
 .input-bg-red {
   background-color: #ED6454;
+}
+.active {
+  width: 33% !important;
+  background-image: url('/images/assets/arrow-up.svg');
+}
+.active::placeholder {
+  color: #fff;
+  opacity: .5;  
 }
