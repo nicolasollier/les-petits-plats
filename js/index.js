@@ -1,23 +1,32 @@
-// Data Lists
-import { recipes } from './recipes.js';
-import { ingredients } from './ingredients.js';
-import { appliances } from './appliances.js';
-import { ustensils } from './ustensils.js';
+import { recipes } from "./recipes.js";
+import { RecipeFactory } from "./factories/recipeFactory.js";
+import { filterRecipes } from "./inputs.js";
 
-// Factories
-import { RecipeFactory } from './factories/recipeFactory.js';
+const searchInput = document.querySelector("#search-input");
 
-// Inputs Handlers
-import { inputsHandler } from './inputs.js';
+let filteredRecipes = [];
 
 const displayRecipes = (recipes) => {
-  const recipesSection = document.querySelector('#recipes-section');
-  recipesSection.innerHTML = '';
-  recipes.forEach(recipe => {
+  const recipesSection = document.querySelector("#recipes-section");
+  recipesSection.innerHTML = "";
+  recipes.forEach((recipe) => {
     const recipeFactory = new RecipeFactory(recipe);
     recipesSection.appendChild(recipeFactory.render());
   });
+};
+
+const updateRecipesList = () => {
+  searchInput.addEventListener("keyup", () => {
+    filteredRecipes = filterRecipes(recipes, searchInput);
+    displayRecipes(filteredRecipes);
+  });
+};
+
+function init() {
+  filteredRecipes = [...recipes];
+
+  displayRecipes(recipes);
+  searchInput && updateRecipesList();
 }
 
-// console.log(recipes, ingredients, appliances, ustensils);
-displayRecipes(recipes);
+init();
