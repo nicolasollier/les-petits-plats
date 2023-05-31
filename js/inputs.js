@@ -13,9 +13,9 @@ dropdownInputs.forEach((input) => {
 
 // Filter recipes by name, ingredients and ustensils
 const filterRecipes = (recipes, searchInput) => {
-  const filteredRecipes = [];
+  const searchValue = searchInput.value.toLowerCase();
 
-  recipes.forEach((recipe) => {
+  return recipes.filter((recipe) => {
     const recipeName = recipe.name.toLowerCase();
     const recipeIngredients = recipe.ingredients.map((ingredient) =>
       ingredient.ingredient.toLowerCase()
@@ -23,20 +23,14 @@ const filterRecipes = (recipes, searchInput) => {
     const recipeUstensils = recipe.ustensils.map((ustensil) =>
       ustensil.toLowerCase()
     );
-    const searchValue = searchInput.value.toLowerCase();
 
-    if (recipeName.includes(searchValue)) {
-      filteredRecipes.push(recipe);
-    }
-    if (recipeIngredients.some((ingredient) => ingredient.includes(searchValue))) {
-      filteredRecipes.push(recipe);
-    }
-    if (recipeUstensils.some((ustensil) => ustensil.includes(searchValue))) {
-      filteredRecipes.push(recipe);
-    }
+    return (
+      recipeName.includes(searchValue) ||
+      recipeIngredients.some((ingredient) => ingredient.includes(searchValue)) ||
+      recipeUstensils.some((ustensil) => ustensil.includes(searchValue))
+    );
   });
-
-  return filteredRecipes;
 };
+
 
 export { filterRecipes };
