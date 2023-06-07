@@ -92,8 +92,6 @@ const filterIngredients = (recipes) => {
         <div class="col">${listItems3}</div>
       </div>
     `;
-
-    dataList.classList.add("ingredients-list");
   });
 };
 
