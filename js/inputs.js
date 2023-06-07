@@ -6,28 +6,32 @@ dropdownInputs.forEach((input) => {
   input.addEventListener("focus", () => {
     input.classList.add("active");
 
-    if(input.id.includes("ingredients")) {
-      dropdownLists[0].classList.add("active");
-    }
-    if(input.id.includes("appliances")) {
-      dropdownLists[1].classList.add("active");
-    }
-    if(input.id.includes("ustensils")) {
-      dropdownLists[2].classList.add("active");
+    switch (input.id) {
+      case "ingredients-input":
+        dropdownLists[0].classList.add("active");
+        break;
+      case "appliances-input":
+        dropdownLists[1].classList.add("active");
+        break;
+      case "ustensils-input":
+        dropdownLists[2].classList.add("active");
+        break;
     }
   });
 
   input.addEventListener("blur", () => {
     input.classList.remove("active");
-    
-    if(input.id.includes("ingredients")) {
-      dropdownLists[0].classList.remove("active");
-    }
-    if(input.id.includes("appliances")) {
-      dropdownLists[1].classList.remove("active");
-    }
-    if(input.id.includes("ustensils")) {
-      dropdownLists[2].classList.remove("active");
+
+    switch (input.id) {
+      case "ingredients-input":
+        dropdownLists[0].classList.remove("active");
+        break;
+      case "appliances-input":
+        dropdownLists[1].classList.remove("active");
+        break;
+      case "ustensils-input":
+        dropdownLists[2].classList.remove("active");
+        break;
     }
   });
 });

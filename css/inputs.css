@@ -43,29 +43,32 @@
   opacity: .5;  
 }
 
-.ingredients-list {
+.dropdown-list {
   display: none;
   top: 288px; 
-  width: 101%;
+  width: 100%;
   position: absolute;
   border-radius: 5px;
-  border: solid #3282F7;
-  outline: 2px solid #3282F7;
   padding: 20px;
   color: #fff;
   background-image: none;
-  background-color: #3282F7;
 }
-.ingredients-list.active {
+.dropdown-list.active {
   display: block;
 }
-.ingredients-list p {
+.dropdown-list p {
   width: fit-content;
   cursor: pointer;
 }
 .ingredients-list p:hover {
   text-decoration: underline;
 }
-.ingredients-list .col {
+.dropdown-list .col {
   max-width: 220px;
+}
+
+.ingredients-list {
+  border: solid #3282F7;
+  outline: 2px solid #3282F7;
+  background-color: #3282F7;
 }
