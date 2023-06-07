@@ -1,13 +1,34 @@
 const dropdownInputs = document.querySelectorAll(".input-dropdown");
+const dropdownLists = document.querySelectorAll(".dropdown-list");
 
 // Add active class to input when focused
 dropdownInputs.forEach((input) => {
   input.addEventListener("focus", () => {
     input.classList.add("active");
+
+    if(input.id.includes("ingredients")) {
+      dropdownLists[0].classList.add("active");
+    }
+    if(input.id.includes("appliances")) {
+      dropdownLists[1].classList.add("active");
+    }
+    if(input.id.includes("ustensils")) {
+      dropdownLists[2].classList.add("active");
+    }
   });
 
   input.addEventListener("blur", () => {
     input.classList.remove("active");
+    
+    if(input.id.includes("ingredients")) {
+      dropdownLists[0].classList.remove("active");
+    }
+    if(input.id.includes("appliances")) {
+      dropdownLists[1].classList.remove("active");
+    }
+    if(input.id.includes("ustensils")) {
+      dropdownLists[2].classList.remove("active");
+    }
   });
 });
 
@@ -26,11 +47,50 @@ const filterRecipes = (recipes, searchInput) => {
 
     return (
       recipeName.includes(searchValue) ||
-      recipeIngredients.some((ingredient) => ingredient.includes(searchValue)) ||
+      recipeIngredients.some((ingredient) =>
+        ingredient.includes(searchValue)
+      ) ||
       recipeUstensils.some((ustensil) => ustensil.includes(searchValue))
     );
   });
 };
 
+// Handles advanced search
+const filterIngredients = (recipes) => {
+  const dataList = document.querySelector("#ingredients-list");
+  const ingredients = [];
 
-export { filterRecipes };
+  recipes.forEach((recipe) => {
+    recipe.ingredients.forEach((ingredient) => {
+      if (!ingredients.includes(ingredient.ingredient)) {
+        ingredients.push(ingredient.ingredient);
+      }
+    });
+
+    const list1 = ingredients.slice(0, 10);
+    const list2 = ingredients.slice(10, 20);
+    const list3 = ingredients.slice(20, 30);
+
+    const listItems1 = list1
+      .map((ingredient) => `<p>${ingredient}</p>`)
+      .join("");
+    const listItems2 = list2
+      .map((ingredient) => `<p>${ingredient}</p>`)
+      .join("");
+    const listItems3 = list3
+      .map((ingredient) => `<p>${ingredient}</p>`)
+      .join("");
+
+    dataList.innerHTML = `
+      <div class="row">
+        <div class="col">${listItems1}</div>
+        <div class="col">${listItems2}</div>
+        <div class="col">${listItems3}</div>
+      </div>
+    `;
+
+    dataList.classList.add("ingredients-list");
+  });
+};
+
+export { filterRecipes, filterIngredients };

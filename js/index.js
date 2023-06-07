@@ -1,6 +1,6 @@
 import { recipes } from "./recipes.js";
 import { RecipeFactory } from "./factories/recipeFactory.js";
-import { filterRecipes } from "./inputs.js";
+import { filterRecipes, filterIngredients } from "./inputs.js";
 
 const searchInput = document.querySelector("#search-input");
 
@@ -26,7 +26,8 @@ function init() {
   filteredRecipes = [...recipes];
 
   displayRecipes(recipes);
-  searchInput && updateRecipesList();
+  searchInput && updateRecipesList()
+  filterIngredients(recipes);
 }
 
 init();

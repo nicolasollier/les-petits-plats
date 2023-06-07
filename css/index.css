@@ -17,5 +17,6 @@ main section::after {
 }
 
 .filters-list {
+  display: flex;
   margin-bottom: 25px;
 }

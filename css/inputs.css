@@ -4,6 +4,7 @@
 }
 
 .input-dropdown {
+  position: relative;
   width: 170px !important;
   height: 58px;
   margin-right: 20px;
@@ -34,10 +35,37 @@
   background-color: #ED6454;
 }
 .active {
-  width: 33% !important;
+  width: 789px !important;
   background-image: url('/images/assets/arrow-up.svg');
 }
 .active::placeholder {
   color: #fff;
   opacity: .5;  
+}
+
+.ingredients-list {
+  display: none;
+  top: 288px; 
+  width: 101%;
+  position: absolute;
+  border-radius: 5px;
+  border: solid #3282F7;
+  outline: 2px solid #3282F7;
+  padding: 20px;
+  color: #fff;
+  background-image: none;
+  background-color: #3282F7;
+}
+.ingredients-list.active {
+  display: block;
+}
+.ingredients-list p {
+  width: fit-content;
+  cursor: pointer;
+}
+.ingredients-list p:hover {
+  text-decoration: underline;
+}
+.ingredients-list .col {
+  max-width: 220px;
 }
