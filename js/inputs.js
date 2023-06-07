@@ -95,4 +95,73 @@ const filterIngredients = (recipes) => {
   });
 };
 
-export { filterRecipes, filterIngredients };
+const filterAppliances = (recipes) => {
+  const dataList = document.querySelector("#appliances-list");
+  const appliances = [];
+
+  recipes.forEach((recipe) => {
+    if (!appliances.includes(recipe.appliance)) {
+      appliances.push(recipe.appliance);
+    }
+
+    const list1 = appliances.slice(0, 10);
+    const list2 = appliances.slice(10, 20);
+    const list3 = appliances.slice(20, 30);
+
+    const listItems1 = list1
+      .map((appliance) => `<p>${appliance}</p>`)
+      .join("");
+    const listItems2 = list2
+      .map((appliance) => `<p>${appliance}</p>`)
+      .join("");
+    const listItems3 = list3
+      .map((appliance) => `<p>${appliance}</p>`)
+      .join("");
+
+    dataList.innerHTML = `
+      <div class="row">
+        <div class="col">${listItems1}</div>
+        <div class="col">${listItems2}</div>
+        <div class="col">${listItems3}</div>
+      </div>
+    `;
+  });
+};
+
+const filterUstensils = (recipes) => {
+  const dataList = document.querySelector("#ustensils-list");
+  const ustensils = [];
+
+  recipes.forEach((recipe) => {
+    recipe.ustensils.forEach((ustensil) => {
+      if (!ustensils.includes(ustensil)) {
+        ustensils.push(ustensil);
+      }
+    });
+
+    const list1 = ustensils.slice(0, 10);
+    const list2 = ustensils.slice(10, 20);
+    const list3 = ustensils.slice(20, 30);
+
+    const listItems1 = list1
+      .map((ustensil) => `<p>${ustensil}</p>`)
+      .join("");
+    const listItems2 = list2
+      .map((ustensil) => `<p>${ustensil}</p>`)
+      .join("");
+    const listItems3 = list3
+      .map((ustensil) => `<p>${ustensil}</p>`)
+      .join("");
+
+    dataList.innerHTML = `
+      <div class="row">
+        <div class="col">${listItems1}</div>
+        <div class="col">${listItems2}</div>
+        <div class="col">${listItems3}</div>
+      </div>
+    `;
+  });
+};
+
+export { filterRecipes, filterIngredients, filterAppliances, filterUstensils };
+

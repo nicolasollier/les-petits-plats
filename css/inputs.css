@@ -36,6 +36,7 @@
 }
 .active {
   width: 789px !important;
+  border-radius: 5px 5px 0 0;
   background-image: url('/images/assets/arrow-up.svg');
 }
 .active::placeholder {
@@ -43,12 +44,15 @@
   opacity: .5;  
 }
 
+.input-group__wrapper {
+  position: relative;
+}
+
 .dropdown-list {
   display: none;
-  top: 288px; 
   width: 100%;
   position: absolute;
-  border-radius: 5px;
+  border-radius: 0 0 5px 5px;
   padding: 20px;
   color: #fff;
   background-image: none;
@@ -71,4 +75,22 @@
   border: solid #3282F7;
   outline: 2px solid #3282F7;
   background-color: #3282F7;
+}
+
+#appliances-input {
+  outline: #68D9A4;
+}
+.appliances-list {
+  border: solid #68D9A4;
+  outline: 0px solid #68D9A4;
+  background-color: #68D9A4;
+}
+
+#ustensils-input {
+  outline: #ED6454;
+}
+.ustensils-list {
+  border: solid #ED6454;
+  outline: 0px solid #ED6454;
+  background-color: #ED6454;
 }

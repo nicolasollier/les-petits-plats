@@ -1,6 +1,6 @@
 import { recipes } from "./recipes.js";
 import { RecipeFactory } from "./factories/recipeFactory.js";
-import { filterRecipes, filterIngredients } from "./inputs.js";
+import { filterRecipes, filterIngredients, filterAppliances, filterUstensils } from "./inputs.js";
 
 const searchInput = document.querySelector("#search-input");
 
@@ -28,6 +28,8 @@ function init() {
   displayRecipes(recipes);
   searchInput && updateRecipesList()
   filterIngredients(recipes);
+  filterAppliances(recipes);
+  filterUstensils(recipes);
 }
 
 init();
