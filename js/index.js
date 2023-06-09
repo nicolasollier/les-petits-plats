@@ -1,13 +1,6 @@
-import { recipes } from "./recipes.js";
-import { inputStateHandler } from "./inputs.js";
-
-import { recipesById, recipesByIngredient, recipesByUtensil, recipesByAppliance, recipesByWord } from './initializeRecipeMaps.js';
-console.log('\nBy id: ', recipesById, '\nByWord: ', recipesByWord,'\nBy ingredient: ', recipesByIngredient, '\nBy utensil: ', recipesByUtensil, '\nBy appliance: ', recipesByAppliance);
-
 import { RecipeFactory } from "./factories/recipeFactory.js";
-
-const searchInput = document.querySelector("#search-input");
-
+import { searchInputHandler } from "./inputs.js";
+import { sortByWord } from "./sorts/sortByWord.js";
 
 const displayRecipes = (recipes) => {
   const recipesSection = document.querySelector("#recipes-section");
@@ -18,24 +11,21 @@ const displayRecipes = (recipes) => {
   });
 };
 
-const updateRecipesList = () => {
-  searchInput.addEventListener("keyup", (e) => {
-    let userInput = e.target.value.toLowerCase();
-    
-    if(userInput.length === 0) {
-      displayRecipes(recipes);
-    }
-    
-    if (userInput.length >= 3 && recipesByWord[userInput]) {
-      displayRecipes(recipesByWord[userInput]);
-    }
-  });
-};
+window.addEventListener("updateWordList", (e) => {
+  const userInput = e.detail.value;
+  const filteredRecipes = sortByWord(userInput);
+
+  applySort(filteredRecipes);
+});
+
+function applySort(recipes) {
+  !recipes && (recipes = sortByWord(""));
+  displayRecipes(recipes);
+}
 
 function init() {
-  inputStateHandler;
-  displayRecipes(recipes);
-  searchInput && updateRecipesList()
+  searchInputHandler;
+  applySort();
 }
 
 init();

@@ -11,10 +11,10 @@ export let recipesByAppliance = {};
 recipes.forEach((recipe) => {
   // Creates a hashmap of recipes by id
   recipesById[recipe.id] = recipe;
-
+  
   // Creates a hashmap of recipes by appliance
   !recipesByAppliance[recipe.appliance] && (recipesByAppliance[recipe.appliance] = []);
-
+  
   // Creates a hashmap of recipes by words finding in recipe's name
   recipe.name.toLowerCase().split(' ').forEach((word) => {
     // Allows search to be case sensitive
@@ -23,16 +23,19 @@ recipes.forEach((recipe) => {
     !recipesByWord[word] && (recipesByWord[word] = []);
     recipesByWord[word].push(recipe);
   });
-
+  
   // Creates a hashmap of recipes by ingredient
   recipe.ingredients.forEach((ingredient) => {
     !recipesByIngredient[ingredient.ingredient] && (recipesByIngredient[ingredient.ingredient] = []);
     recipesByIngredient[ingredient.ingredient].push(recipe);
   });
-
+  
   // Creates a hashmap of recipes by utensil
   recipe.ustensils.forEach((utensil) => { 
-		!recipesByUtensil[utensil] && (recipesByUtensil[utensil] = []);
+    !recipesByUtensil[utensil] && (recipesByUtensil[utensil] = []);
     recipesByUtensil[utensil].push(recipe);
   });
 });
+
+// Uncomment to see the hasmaps in the console
+console.log('[INDEX]', '\nBy id: ', recipesById, '\nByWord: ', recipesByWord,'\nBy ingredient: ', recipesByIngredient, '\nBy utensil: ', recipesByUtensil, '\nBy appliance: ', recipesByAppliance);
