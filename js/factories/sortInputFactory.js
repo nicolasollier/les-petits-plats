@@ -48,10 +48,8 @@ export class SortInputFactory {
   renderListData(userInput) {
     const dataList = this.data;
     const dropdownList = document.querySelector(`.${this.type}-list`);
-
+    
     dropdownList.innerHTML = "";
-
-    console.log(this.data)
 
     if (userInput) {
       const filteredDataList = dataList.filter((data) =>
