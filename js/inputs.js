@@ -1,4 +1,5 @@
 import { SortInputFactory } from "./factories/sortInputFactory.js";
+import { recipesByAppliance, recipesByIngredient, recipesByUstensil } from "./initializeRecipeMaps.js";
 
 // Watch user input and emit to index.js to update recipes to display
 export const searchInputHandler = document.querySelector("#search-input").addEventListener("input", (e) => {
@@ -11,11 +12,14 @@ export const searchInputHandler = document.querySelector("#search-input").addEve
 });
 
 // Render the dropdown lists
-const ingredientsInputFactory = new SortInputFactory("ingredients");
-ingredientsInputFactory.renderListData(null);
+const ingredientsInputFactory = new SortInputFactory("ingredients", recipesByIngredient);
+ingredientsInputFactory.renderInput();
+ingredientsInputFactory.renderListData();
 
-const appliancesInputFactory = new SortInputFactory("appliances");
-appliancesInputFactory.renderListData(null);
+const appliancesInputFactory = new SortInputFactory("appliances", recipesByAppliance);
+appliancesInputFactory.renderInput();
+appliancesInputFactory.renderListData();
 
-const ustensilsInputFactory = new SortInputFactory("ustensils");
-ustensilsInputFactory.renderListData(null);
+const ustensilsInputFactory = new SortInputFactory("ustensils", recipesByUstensil);
+ustensilsInputFactory.renderInput();
+ustensilsInputFactory.renderListData();

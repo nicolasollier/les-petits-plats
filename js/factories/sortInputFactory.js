@@ -1,44 +1,59 @@
 export class SortInputFactory {
-  constructor(type) {
+  constructor(type, data) {
     this.type = type;
+    this.data = data;
   }
 
-  renderListData(listData) {
-    const filtersList = document.querySelector('.filters-list');
+  renderInput() {
+    const filtersList = document.querySelector(".filters-list");
+    const dropdownList = document.createElement("div");
+    const inputGroupWrapper = document.createElement("div");
+    const input = document.createElement("input");
 
-    const inputGroupWrapper = document.createElement('div');
-    inputGroupWrapper.classList.add('input-group__wrapper');
-    
-    const input = document.createElement('input');
-    input.id = `${this.type}-input`;
-    input.classList.add('input-dropdown');
-    input.placeholder = `${this.type.charAt(0).toUpperCase() + this.type.slice(1)}`;
-
-    const dropdownList = document.createElement('div');
     dropdownList.id = `${this.type}-list`;
-    dropdownList.classList.add('dropdown-list', `${this.type}-list`);
-    
-    if(this.type === 'ingredients') {
-      input.classList.add('input-bg-blue');
-    } else if(this.type === 'appliances') {
-      input.classList.add('input-bg-green');
-    } else if(this.type === 'ustensils') {
-      input.classList.add('input-bg-orange');
+    dropdownList.classList.add("dropdown-list", `${this.type}-list`);
+
+    inputGroupWrapper.classList.add("input-group__wrapper");
+
+    input.id = `${this.type}-input`;
+    input.classList.add("input-dropdown");
+    input.placeholder = `${
+      this.type.charAt(0).toUpperCase() + this.type.slice(1)
+    }`;
+
+    if (this.type === "ingredients") {
+      input.classList.add("input-bg-blue");
+    } else if (this.type === "appliances") {
+      input.classList.add("input-bg-green");
+    } else if (this.type === "ustensils") {
+      input.classList.add("input-bg-orange");
     }
 
     //Toggle class when focus on input
-    input.addEventListener('focus', () => {
-      input.classList.add('active');
-      dropdownList.classList.add('active');
+    input.addEventListener("focus", () => {
+      input.classList.add("active");
+      dropdownList.classList.add("active");
     });
-    input.addEventListener('blur', () => {
-      input.classList.remove('active');
-      dropdownList.classList.remove('active');
+    input.addEventListener("blur", () => {
+      input.classList.remove("active");
+      dropdownList.classList.remove("active");
     });
 
     inputGroupWrapper.appendChild(input);
     inputGroupWrapper.appendChild(dropdownList);
 
     filtersList.appendChild(inputGroupWrapper);
+  }
+
+  renderListData() {
+    const dropdownList = document.querySelector(`.${this.type}-list`); 
+
+    Object.keys(this.data).forEach((el) => {
+      const listItem = document.createElement("span");
+      listItem.classList.add("dropdown-list__item");
+      listItem.innerText = el;
+
+      dropdownList.appendChild(listItem);
+    });
   }
 }

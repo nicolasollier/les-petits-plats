@@ -70,6 +70,12 @@
 .dropdown-list .col {
   max-width: 220px;
 }
+.dropdown-list .dropdown-list__item {
+  color: #fff;
+  cursor: pointer;
+  margin: 2px 6px;
+  text-decoration: none;
+}
 
 .ingredients-list {
   border: solid #3282F7;

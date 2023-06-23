@@ -1,11 +1,11 @@
 import { recipes } from "./recipes.js";
 
 // Hasmaps of recipes by id, by ingredient, by utensil and by appliance
-export let recipesById = {};
-export let recipesByWord = {};
-export let recipesByIngredient = {};
-export let recipesByUtensil = {};
-export let recipesByAppliance = {};
+let recipesById = {};
+let recipesByWord = {};
+let recipesByIngredient = {};
+let recipesByUstensil = {};
+let recipesByAppliance = {};
 
 // Creates the hasmaps by iterating over recipes.js
 recipes.forEach((recipe) => {
@@ -32,10 +32,9 @@ recipes.forEach((recipe) => {
   
   // Creates a hashmap of recipes by utensil
   recipe.ustensils.forEach((utensil) => { 
-    !recipesByUtensil[utensil] && (recipesByUtensil[utensil] = []);
-    recipesByUtensil[utensil].push(recipe);
+    !recipesByUstensil[utensil] && (recipesByUstensil[utensil] = []);
+    recipesByUstensil[utensil].push(recipe);
   });
 });
 
-// Uncomment to see the hasmaps in the console
-console.log('[INDEX]', '\nBy id: ', recipesById, '\nByWord: ', recipesByWord,'\nBy ingredient: ', recipesByIngredient, '\nBy utensil: ', recipesByUtensil, '\nBy appliance: ', recipesByAppliance);
+export { recipesByWord, recipesByIngredient, recipesByAppliance, recipesByUstensil }

@@ -1,10 +1,10 @@
 // Import recipesByIngredients from initializeRecipeMaps.js
-import { recipesByIngredients } from '../initializeRecipeMaps.js';
 import { recipes } from '../recipes.js';
+import { recipesByIngredient } from '../initializeRecipeMaps.js';
 
-export const sortByIngredients = (userInput) => {
-  if (userInput.length < 3 || !recipesByIngredients[userInput]) {
+export const sortByIngredient = (userInput) => {
+  if (userInput.length < 3 || !recipesByIngredient[userInput]) {
     return recipes;
   }
-  return recipesByIngredients[userInput];
+  return recipesByIngredient[userInput];
 }
