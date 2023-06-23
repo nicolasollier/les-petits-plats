@@ -13,7 +13,11 @@ recipes.forEach((recipe) => {
   recipesById[recipe.id] = recipe;
   
   // Creates a hashmap of recipes by appliance
-  !recipesByAppliance[recipe.appliance] && (recipesByAppliance[recipe.appliance] = []);
+  const normalizedAppliance = recipe.appliance.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+  !recipesByAppliance[normalizedAppliance] && (recipesByAppliance[normalizedAppliance] = []);
+  recipesByAppliance[normalizedAppliance].push(recipe);
+
   
   // Creates a hashmap of recipes by words finding in recipe's name
   recipe.name.toLowerCase().split(' ').forEach((word) => {
@@ -26,14 +30,20 @@ recipes.forEach((recipe) => {
   
   // Creates a hashmap of recipes by ingredient
   recipe.ingredients.forEach((ingredient) => {
-    !recipesByIngredient[ingredient.ingredient] && (recipesByIngredient[ingredient.ingredient] = []);
-    recipesByIngredient[ingredient.ingredient].push(recipe);
+    // Remove accents and convert to lowercase
+    const normalizedIngredient = ingredient.ingredient.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  
+    !recipesByIngredient[normalizedIngredient] && (recipesByIngredient[normalizedIngredient] = []);
+    recipesByIngredient[normalizedIngredient].push(recipe);
   });
   
   // Creates a hashmap of recipes by utensil
-  recipe.ustensils.forEach((utensil) => { 
-    !recipesByUstensil[utensil] && (recipesByUstensil[utensil] = []);
-    recipesByUstensil[utensil].push(recipe);
+  recipe.ustensils.forEach((utensil) => {
+    // Remove accents and convert to lowercase
+    const normalizedUtensil = utensil.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+    !recipesByUstensil[normalizedUtensil] && (recipesByUstensil[normalizedUtensil] = []);
+    recipesByUstensil[normalizedUtensil].push(recipe);
   });
 });
 
