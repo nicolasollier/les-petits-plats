@@ -80,23 +80,27 @@ export class SortInputFactory {
           const input = document.querySelector(`#${this.type}-input`);
           
           new BadgeFactory(this.type, data).renderBadge();
+          
           input.value = "";
+          this.renderListData("");
         });
       });
     } else {
       dataList.forEach((data) => {
         const listItem = document.createElement("div");
         listItem.classList.add("dropdown-list__item");
+        
         listItem.innerHTML = data;
         dropdownList.appendChild(listItem);
-
         
         listItem.addEventListener("click", (e) => {
           e.preventDefault();
           const input = document.querySelector(`#${this.type}-input`);
 
           new BadgeFactory(this.type, data).renderBadge();
+          
           input.value = "";
+          this.renderListData("");
         });
       });
     }
