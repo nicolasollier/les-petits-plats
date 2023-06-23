@@ -19,13 +19,8 @@ export const searchInputHandler = document
 
 // Render the dropdown lists
 let ingredientsList = Object.keys(recipesByIngredient);
-ingredientsList.sort();
-
 let appliancesList = Object.keys(recipesByAppliance);
-appliancesList.sort();
-
 let ustensilsList = Object.keys(recipesByUstensil);
-ustensilsList.sort();
 
 const ingredientsInputFactory = new SortInputFactory(
   "ingredients",
