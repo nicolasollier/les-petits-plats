@@ -7,7 +7,6 @@ export class SortInputFactory {
   }
 
   renderInput() {
-    const filtersList = document.querySelector(".filters-list");
     const inputsWrapper = document.querySelector(".inputs-wrapper");
     const dropdownList = document.createElement("div");
     const inputGroupWrapper = document.createElement("div");
@@ -78,7 +77,10 @@ export class SortInputFactory {
 
         listItem.addEventListener("click", (e) => {
           e.preventDefault();
+          const input = document.querySelector(`#${this.type}-input`);
+          
           new BadgeFactory(this.type, data).renderBadge();
+          input.value = "";
         });
       });
     } else {
@@ -91,7 +93,10 @@ export class SortInputFactory {
         
         listItem.addEventListener("click", (e) => {
           e.preventDefault();
+          const input = document.querySelector(`#${this.type}-input`);
+
           new BadgeFactory(this.type, data).renderBadge();
+          input.value = "";
         });
       });
     }
