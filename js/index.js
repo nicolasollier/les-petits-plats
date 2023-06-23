@@ -1,5 +1,5 @@
 import { RecipeFactory } from "./factories/recipeFactory.js";
-import { searchInputHandler } from "./inputs.js";
+import { createsFilterInputs } from "./inputs.js";
 import { recipes } from "./recipes.js";
 
 const displayRecipes = (recipes) => {
@@ -11,11 +11,8 @@ const displayRecipes = (recipes) => {
   });
 };
 
-// Watch the main input and update the recipes to display
-window.addEventListener("updateWordList", (e) => {});
-
 function init() {
-  searchInputHandler;
+  createsFilterInputs();
   displayRecipes(recipes)
 }
 
