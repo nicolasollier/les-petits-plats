@@ -1,7 +1,6 @@
 import { RecipeFactory } from "./factories/recipeFactory.js";
 import { searchInputHandler } from "./inputs.js";
 import { sortByWord } from "./sorts/sortByWord.js";
-import { sortByIngredient } from "./sorts/sortByIngredients.js";
 
 const displayRecipes = (recipes) => {
   const recipesSection = document.querySelector("#recipes-section");

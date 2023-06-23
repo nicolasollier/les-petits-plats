@@ -45,15 +45,32 @@ export class SortInputFactory {
     filtersList.appendChild(inputGroupWrapper);
   }
 
-  renderListData() {
-    const dropdownList = document.querySelector(`.${this.type}-list`); 
+  renderListData(userInput) {
+    const dataList = this.data;
+    const dropdownList = document.querySelector(`.${this.type}-list`);
 
-    Object.keys(this.data).forEach((el) => {
-      const listItem = document.createElement("span");
-      listItem.classList.add("dropdown-list__item");
-      listItem.innerText = el;
+    dropdownList.innerHTML = "";
 
-      dropdownList.appendChild(listItem);
-    });
+    console.log(this.data)
+
+    if (userInput) {
+      const filteredDataList = dataList.filter((data) =>
+        data.toLowerCase().includes(userInput.toLowerCase())
+      );
+
+      filteredDataList.forEach((data) => {
+        const listItem = document.createElement("div");
+        listItem.classList.add("dropdown-list__item");
+        listItem.innerHTML = data;
+        dropdownList.appendChild(listItem);
+      });
+    } else {
+      dataList.forEach((data) => {
+        const listItem = document.createElement("div");
+        listItem.classList.add("dropdown-list__item");
+        listItem.innerHTML = data;
+        dropdownList.appendChild(listItem);
+      });
+    }
   }
 }
