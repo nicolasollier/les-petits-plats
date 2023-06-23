@@ -1,3 +1,5 @@
+import { BadgeFactory } from "./badgeFactory.js";
+
 export class SortInputFactory {
   constructor(type, data) {
     this.type = type;
@@ -6,6 +8,7 @@ export class SortInputFactory {
 
   renderInput() {
     const filtersList = document.querySelector(".filters-list");
+    const inputsWrapper = document.querySelector(".inputs-wrapper");
     const dropdownList = document.createElement("div");
     const inputGroupWrapper = document.createElement("div");
     const input = document.createElement("input");
@@ -34,15 +37,26 @@ export class SortInputFactory {
       input.classList.add("active");
       dropdownList.classList.add("active");
     });
+
+    let blurTimeoutId;  // Declare a variable to hold the timeout ID
+
     input.addEventListener("blur", () => {
-      input.classList.remove("active");
-      dropdownList.classList.remove("active");
+      // Instead of immediately removing classes, set a timeout
+      blurTimeoutId = setTimeout(() => {
+        input.classList.remove("active");
+        dropdownList.classList.remove("active");
+      }, 100);  // 100ms delay should be enough
+    });
+
+    // When a mousedown event occurs on the dropdown, clear the timeout
+    dropdownList.addEventListener("mousedown", () => {
+      clearTimeout(blurTimeoutId);
     });
 
     inputGroupWrapper.appendChild(input);
     inputGroupWrapper.appendChild(dropdownList);
 
-    filtersList.appendChild(inputGroupWrapper);
+    inputsWrapper.appendChild(inputGroupWrapper);
   }
 
   renderListData(userInput) {
@@ -61,6 +75,11 @@ export class SortInputFactory {
         listItem.classList.add("dropdown-list__item");
         listItem.innerHTML = data;
         dropdownList.appendChild(listItem);
+
+        listItem.addEventListener("click", (e) => {
+          e.preventDefault();
+          new BadgeFactory(this.type, data).renderBadge();
+        });
       });
     } else {
       dataList.forEach((data) => {
@@ -68,6 +87,12 @@ export class SortInputFactory {
         listItem.classList.add("dropdown-list__item");
         listItem.innerHTML = data;
         dropdownList.appendChild(listItem);
+
+        
+        listItem.addEventListener("click", (e) => {
+          e.preventDefault();
+          new BadgeFactory(this.type, data).renderBadge();
+        });
       });
     }
   }

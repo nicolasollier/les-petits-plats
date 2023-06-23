@@ -48,6 +48,10 @@
   position: relative;
 }
 
+.inputs-wrapper {
+  display: flex;
+}
+
 .dropdown-list {
   display: none;
   width: 100%;
@@ -98,5 +102,30 @@
 .ustensils-list {
   border: solid #ED6454;
   outline: 0px solid #ED6454;
+  background-color: #ED6454;
+}
+
+/* Badges */
+.item__badge {
+  display: flex;
+  max-width: fit-content;
+  align-items: center;
+  justify-content: center;
+  height: 37px;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.ingredients-badge {
+  background-color: #3282F7;
+}
+.appliances-badge {
+  background-color: #68D9A4;
+}
+.ustensils-badge {
   background-color: #ED6454;
 }
