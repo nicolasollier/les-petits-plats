@@ -1,6 +1,6 @@
 import { RecipeFactory } from "./factories/recipeFactory.js";
 import { searchInputHandler } from "./inputs.js";
-import { sortByWord } from "./sorts/sortByWord.js";
+import { recipes } from "./recipes.js";
 
 const displayRecipes = (recipes) => {
   const recipesSection = document.querySelector("#recipes-section");
@@ -11,21 +11,12 @@ const displayRecipes = (recipes) => {
   });
 };
 
-window.addEventListener("updateWordList", (e) => {
-  const userInput = e.detail.value;
-  const filteredRecipes = sortByWord(userInput);
-
-  applySort(filteredRecipes);
-});
-
-function applySort(recipes) {
-  !recipes && (recipes = sortByWord(""));
-  displayRecipes(recipes);
-}
+// Watch the main input and update the recipes to display
+window.addEventListener("updateWordList", (e) => {});
 
 function init() {
   searchInputHandler;
-  applySort();
+  displayRecipes(recipes)
 }
 
 init();
