@@ -8,7 +8,7 @@ export class SortInputFactory {
 
   renderInput() {
     const inputsWrapper = document.querySelector(".inputs-wrapper");
-    const dropdownList = document.createElement("div");
+    const dropdownList = document.createElement("ul");
     const inputGroupWrapper = document.createElement("div");
     const input = document.createElement("input");
 
@@ -70,9 +70,9 @@ export class SortInputFactory {
       );
 
       filteredDataList.forEach((data) => {
-        const listItem = document.createElement("div");
+        const listItem = document.createElement("li");
         listItem.classList.add("dropdown-list__item");
-        listItem.innerHTML = data;
+        listItem.innerHTML = data.charAt(0).toUpperCase() + data.slice(1);
         dropdownList.appendChild(listItem);
 
         listItem.addEventListener("click", (e) => {
@@ -87,10 +87,9 @@ export class SortInputFactory {
       });
     } else {
       dataList.forEach((data) => {
-        const listItem = document.createElement("div");
+        const listItem = document.createElement("li");
         listItem.classList.add("dropdown-list__item");
-        
-        listItem.innerHTML = data;
+        listItem.innerHTML = data.charAt(0).toUpperCase() + data.slice(1);
         dropdownList.appendChild(listItem);
         
         listItem.addEventListener("click", (e) => {
