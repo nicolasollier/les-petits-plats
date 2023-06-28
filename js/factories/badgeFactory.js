@@ -2,12 +2,17 @@ export class BadgeFactory {
   constructor(type, data) {
     this.type = type;
     this.data = data;
+    this.id = this.createBadgeId(type, data);
+  }
+
+  createBadgeId(type, data) {
+    return `${type}-${data.replace(/\s+/g, '_')}`;
   }
 
   removeBadge() {
-    const badgeList = document.querySelector(".badge-list");
-    const badge = document.querySelector(`.${this.type}-badge`);
-    badgeList.removeChild(badge);
+    const badge = document.querySelector(`#${this.id}`);
+    console.log(badge, this.id);
+    badge.remove();
   }
 
   renderBadge() {
@@ -16,8 +21,8 @@ export class BadgeFactory {
     const badgeName = document.createElement("span");
     const badgeClose = document.createElement("img");
 
+    badge.id = this.id;
     badge.classList.add("item__badge");
-
     badge.classList.add(`${this.type}-badge`);
     badgeName.classList.add("badge__name");
     badgeClose.classList.add("badge__close");
