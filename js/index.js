@@ -31,31 +31,24 @@ function displayRecipes(recipes) {
 };
 
 function filterRecipes() {
-  let filteredRecipes = [...recipes];  // copy of all recipes
+  let filteredRecipes = [...recipes];
 
-  // Filter recipes by ingredient
+  // Filter recipes by active filters
   if (activeFilters.ingredients.length > 0) {
     activeFilters.ingredients.forEach((ingredient) => {
       const matchingRecipes = recipesByIngredient[ingredient];
-
       filteredRecipes = filteredRecipes.filter(recipe => matchingRecipes.includes(recipe));
     });
   }
-
-  // Filter recipes by appliance
   if (activeFilters.appliances.length > 0) {
     activeFilters.appliances.forEach((appliance) => {
       const matchingRecipes = recipesByAppliance[appliance];
-      
       filteredRecipes = filteredRecipes.filter(recipe => matchingRecipes.includes(recipe));
     });
   }
-
-  // Filter recipes by ustensil
   if (activeFilters.ustensils.length > 0) {
     activeFilters.ustensils.forEach((ustensil) => {
       const matchingRecipes = recipesByUstensil[ustensil];
-      
       filteredRecipes = filteredRecipes.filter(recipe => matchingRecipes.includes(recipe));
     });
   }
