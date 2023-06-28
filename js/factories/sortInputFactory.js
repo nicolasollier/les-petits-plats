@@ -81,6 +81,7 @@ export class SortInputFactory {
 
           const event = new CustomEvent("updateActiveFilters", {
             detail: {
+              action: "add",
               type: this.type,
               data: data,
             },
