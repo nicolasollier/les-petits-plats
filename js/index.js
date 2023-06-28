@@ -1,6 +1,7 @@
 import { RecipeFactory } from "./factories/recipeFactory.js";
 import { createsFilterInputs } from "./inputs.js";
 import { recipes } from "./recipes.js";
+import { recipesByIngredient, recipesByAppliance, recipesByUstensil } from "./initializeRecipeMaps.js";
 
 let activeFilters = {
   ingredients: [],
@@ -30,41 +31,38 @@ function displayRecipes(recipes) {
 };
 
 function filterRecipes() {
-  let filteredRecipes = recipes;
+  let filteredRecipes = [...recipes];  // copy of all recipes
 
   // Filter recipes by ingredient
   if (activeFilters.ingredients.length > 0) {
-    filteredRecipes = filteredRecipes.filter((recipe) => {
-      return activeFilters.ingredients.every((ingredient) => {
-        return recipe.ingredients.some((recipeIngredient) => {
-          return recipeIngredient.ingredient.toLowerCase().includes(ingredient);
-        });
-      });
+    activeFilters.ingredients.forEach((ingredient) => {
+      const matchingRecipes = recipesByIngredient[ingredient];
+
+      filteredRecipes = filteredRecipes.filter(recipe => matchingRecipes.includes(recipe));
     });
   }
 
   // Filter recipes by appliance
   if (activeFilters.appliances.length > 0) {
-    filteredRecipes = filteredRecipes.filter((recipe) => {
-      return activeFilters.appliances.every((appliance) => {
-        return recipe.appliance.toLowerCase().includes(appliance);
-      });
+    activeFilters.appliances.forEach((appliance) => {
+      const matchingRecipes = recipesByAppliance[appliance];
+      
+      filteredRecipes = filteredRecipes.filter(recipe => matchingRecipes.includes(recipe));
     });
   }
 
   // Filter recipes by ustensil
   if (activeFilters.ustensils.length > 0) {
-    filteredRecipes = filteredRecipes.filter((recipe) => {
-      return activeFilters.ustensils.every((ustensil) => {
-        return recipe.ustensils.some((recipeUstensil) => {
-          return recipeUstensil.toLowerCase().includes(ustensil);
-        });
-      });
+    activeFilters.ustensils.forEach((ustensil) => {
+      const matchingRecipes = recipesByUstensil[ustensil];
+      
+      filteredRecipes = filteredRecipes.filter(recipe => matchingRecipes.includes(recipe));
     });
   }
 
   displayRecipes(filteredRecipes);
 }
+
 
 function init() {
   createsFilterInputs();
