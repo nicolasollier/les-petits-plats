@@ -11,7 +11,6 @@ export class BadgeFactory {
 
   removeBadge() {
     const badge = document.querySelector(`#${this.id}`);
-    console.log(badge, this.id);
     badge.remove();
   }
 
