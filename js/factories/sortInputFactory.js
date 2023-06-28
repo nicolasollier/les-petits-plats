@@ -37,14 +37,14 @@ export class SortInputFactory {
       dropdownList.classList.add("active");
     });
 
-    let blurTimeoutId;  // Declare a variable to hold the timeout ID
+    let blurTimeoutId; // Declare a variable to hold the timeout ID
 
     input.addEventListener("blur", () => {
       // Instead of immediately removing classes, set a timeout
       blurTimeoutId = setTimeout(() => {
         input.classList.remove("active");
         dropdownList.classList.remove("active");
-      }, 100);  // 100ms delay should be enough
+      }, 100); // 100ms delay should be enough
     });
 
     // When a mousedown event occurs on the dropdown, clear the timeout
@@ -61,7 +61,7 @@ export class SortInputFactory {
   renderListData(userInput) {
     const dataList = this.data;
     const dropdownList = document.querySelector(`.${this.type}-list`);
-    
+
     dropdownList.innerHTML = "";
 
     if (userInput) {
@@ -78,7 +78,14 @@ export class SortInputFactory {
         listItem.addEventListener("click", (e) => {
           e.preventDefault();
           const input = document.querySelector(`#${this.type}-input`);
-          
+
+          const event = new CustomEvent("updateActiveFilters", {
+            detail: {
+              type: this.type,
+              data: data,
+            },
+          });
+          document.dispatchEvent(event);
           new BadgeFactory(this.type, data).renderBadge();
           
           input.value = "";
@@ -91,13 +98,21 @@ export class SortInputFactory {
         listItem.classList.add("dropdown-list__item");
         listItem.innerHTML = data.charAt(0).toUpperCase() + data.slice(1);
         dropdownList.appendChild(listItem);
-        
+
         listItem.addEventListener("click", (e) => {
           e.preventDefault();
           const input = document.querySelector(`#${this.type}-input`);
 
+          const event = new CustomEvent("updateActiveFilters", {
+            detail: {
+              action: "add",
+              type: this.type,
+              data: data,
+            },
+          });
+          document.dispatchEvent(event);
           new BadgeFactory(this.type, data).renderBadge();
-          
+
           input.value = "";
           this.renderListData("");
         });

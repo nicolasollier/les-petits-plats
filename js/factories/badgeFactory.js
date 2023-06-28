@@ -29,6 +29,14 @@ export class BadgeFactory {
 
     badgeClose.addEventListener("click", (e) => {
       e.preventDefault();
+      const event = new CustomEvent("updateActiveFilters", {
+        detail: {
+          action: "remove",
+          type: this.type,
+          data: this.data,
+        },
+      });
+      document.dispatchEvent(event);
       this.removeBadge();
     });
 
