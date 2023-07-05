@@ -3,6 +3,7 @@ import { createsFilterInputs } from "./inputs.js";
 import { recipes } from "./recipes.js";
 import { recipesByIngredient, recipesByAppliance, recipesByUstensil } from "./initializeRecipeMaps.js";
 
+// Global variables
 let userInput = "";
 let filteredRecipes = [...recipes];
 let activeFilters = {
@@ -11,32 +12,13 @@ let activeFilters = {
   ustensils: [],
 };
 
-//Logs
-console.log(userInput, activeFilters, filteredRecipes);
-
 document.addEventListener("updateSearchInput", (e) => {
   userInput = e.detail.userInput.toLowerCase();
-
-  //Search if user input matches recipe name, description or ingredients
-  filteredRecipes = recipes.filter((recipe) => {
-    const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredient);
-    return (
-      recipe.name.toLowerCase().includes(userInput) ||
-      recipe.description.toLowerCase().includes(userInput) ||
-      recipeIngredients.some((ingredient) =>
-        ingredient.toLowerCase().includes(userInput)
-      )
-    );
-  });
-
-  //Logs
-  console.log(userInput, activeFilters, filteredRecipes)
   displayRecipes(filteredRecipes);
 });
 
 document.addEventListener("updateActiveFilters", (e) => {
   const { action, type, data } = e.detail;
-  console.log(action, type, data)
   
   if(activeFilters.hasOwnProperty(type) && action === "add") {
     activeFilters[type].push(data);
@@ -44,8 +26,6 @@ document.addEventListener("updateActiveFilters", (e) => {
     activeFilters[type] = activeFilters[type].filter((filter) => filter !== data);
   }
 
-  //Logs
-  console.log(userInput, activeFilters, filteredRecipes)
   filterRecipes();
 });
 
@@ -59,6 +39,18 @@ function displayRecipes(recipes) {
 };
 
 function filterRecipes() {
+  //Search if user input matches recipe name, description or ingredients
+  filteredRecipes = recipes.filter((recipe) => {
+    const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredient);
+    return (
+      recipe.name.toLowerCase().includes(userInput) ||
+      recipe.description.toLowerCase().includes(userInput) ||
+      recipeIngredients.some((ingredient) =>
+        ingredient.toLowerCase().includes(userInput)
+      )
+    );
+  });
+
   // Filter recipes by active filters
   if (activeFilters.ingredients.length > 0) {
     activeFilters.ingredients.forEach((ingredient) => {
@@ -85,7 +77,7 @@ function filterRecipes() {
 
 function init() {
   createsFilterInputs();
-  filterRecipes();
+  displayRecipes(recipes);
 }
 
 init();
