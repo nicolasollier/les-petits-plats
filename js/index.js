@@ -14,6 +14,8 @@ let activeFilters = {
 
 document.addEventListener("updateSearchInput", (e) => {
   userInput = e.detail.userInput.toLowerCase();
+
+  handleSearchInput();
   displayRecipes(filteredRecipes);
 });
 
@@ -38,8 +40,7 @@ function displayRecipes(recipes) {
   });
 };
 
-function filterRecipes() {
-  //Search if user input matches recipe name, description or ingredients
+function handleSearchInput() {
   filteredRecipes = recipes.filter((recipe) => {
     const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredient);
     return (
@@ -50,6 +51,11 @@ function filterRecipes() {
       )
     );
   });
+}
+
+function filterRecipes() {
+  //Search if user input matches recipe name, description or ingredients
+  handleSearchInput();
 
   // Filter recipes by active filters
   if (activeFilters.ingredients.length > 0) {
