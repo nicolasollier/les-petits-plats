@@ -5,6 +5,18 @@ import {
   recipesByUstensil,
 } from "./initializeRecipeMaps.js";
 
+// Handles main search input
+const searchInput = document.querySelector("#search-input");
+
+searchInput.addEventListener("input", (e) => {
+  const event = new CustomEvent("updateSearchInput", {
+    detail: {
+      userInput: e.target.value,
+    },
+  });
+  document.dispatchEvent(event);
+});
+
 // Watch user input and emit to index.js to update recipes to display
 export const createsFilterInputs = () => {
   // Render the dropdown lists
@@ -19,9 +31,7 @@ export const createsFilterInputs = () => {
   ingredientsInputFactory.renderInput();
   ingredientsInputFactory.renderListData();
 
-  document
-    .querySelector("#ingredients-input")
-    .addEventListener("input", (e) => {
+  document.querySelector("#ingredients-input").addEventListener("input", (e) => {
       ingredientsInputFactory.renderListData(e.target.value);
     });
 
