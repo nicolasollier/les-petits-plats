@@ -34,6 +34,25 @@ document.addEventListener("updateActiveFilters", (e) => {
 function displayRecipes(recipes) {
   const recipesSection = document.querySelector("#recipes-section");
   recipesSection.innerHTML = "";
+
+  //Handles no recipes found
+  if (recipes.length === 0) {
+    const noRecipesContainer = document.createElement("div");
+    const noRecipesImage = document.createElement("img");
+    const noRecipesMessage = document.createElement("p");
+    
+    noRecipesImage.src = "./images/assets/not_found.jpg";
+    noRecipesImage.alt = "No recipes found";
+    noRecipesImage.style.height = "250px";
+    noRecipesMessage.innerText = "Aucune recette trouvée... 😥";
+
+    noRecipesContainer.appendChild(noRecipesImage);
+    noRecipesContainer.appendChild(noRecipesMessage);
+    recipesSection.appendChild(noRecipesContainer);
+
+    return;
+  }
+
   recipes.forEach((recipe) => {
     const recipeFactory = new RecipeFactory(recipe);
     recipesSection.appendChild(recipeFactory.render());
