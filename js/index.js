@@ -60,16 +60,18 @@ function displayRecipes(recipes) {
 };
 
 function handleSearchInput() {
-  filteredRecipes = recipes.filter((recipe) => {
-    const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredient);
-    return (
-      recipe.name.toLowerCase().includes(userInput) ||
-      recipe.description.toLowerCase().includes(userInput) ||
-      recipeIngredients.some((ingredient) =>
-        ingredient.toLowerCase().includes(userInput)
-      )
-    );
-  });
+  if(userInput.length >= 3 || userInput.length === 0) {
+    filteredRecipes = recipes.filter((recipe) => {
+      const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredient);
+      return (
+        recipe.name.toLowerCase().includes(userInput) ||
+        recipe.description.toLowerCase().includes(userInput) ||
+        recipeIngredients.some((ingredient) =>
+          ingredient.toLowerCase().includes(userInput)
+        )
+      );
+    });
+  }
 }
 
 function filterRecipes() {
