@@ -1,0 +1,94 @@
+<mxfile host="app.diagrams.net" modified="2023-07-06T09:34:35.949Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/114.0" etag="_ZqEzYPvYV3Il6d23Ubc" version="21.3.8" type="github">
+  <diagram name="Page-1" id="LRnmdRe49R-_4AzR9pUn">
+    <mxGraphModel dx="1687" dy="967" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-4" value="if" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="205" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-5" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="320" y="80" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-2" value="displayRecipes(recipes)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2Jn9JWnAUsCylit9iHWN-5">
+          <mxGeometry width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-3" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="2Jn9JWnAUsCylit9iHWN-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="40" as="sourcePoint" />
+            <mxPoint x="100" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-11" value="&lt;span style=&quot;background-color: rgb(255, 0, 128);&quot;&gt;add || remove&lt;/span&gt; activeFilter" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="480" y="220" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-12" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="559.7" y="360" as="sourcePoint" />
+            <mxPoint x="559.7" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-13" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="360" as="sourcePoint" />
+            <mxPoint x="279.68" y="265" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-14" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="360" as="sourcePoint" />
+            <mxPoint x="280" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-15" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="2Jn9JWnAUsCylit9iHWN-4" target="2Jn9JWnAUsCylit9iHWN-11">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="590" y="300" as="sourcePoint" />
+            <mxPoint x="640" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-16" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" target="2Jn9JWnAUsCylit9iHWN-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="360" y="235" as="sourcePoint" />
+            <mxPoint x="540" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-17" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="419.7" y="360" as="sourcePoint" />
+            <mxPoint x="419.7" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-18" value="&lt;div&gt;&lt;span style=&quot;background-color: rgb(255, 0, 128);&quot;&gt;on input&lt;/span&gt; &lt;br&gt;&lt;/div&gt;&lt;div&gt;handleSearchInput()&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="200" y="220" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-19" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="320" y="420" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-20" value="filterRecipes()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2Jn9JWnAUsCylit9iHWN-19">
+          <mxGeometry width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-21" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="2Jn9JWnAUsCylit9iHWN-19">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="40" as="sourcePoint" />
+            <mxPoint x="100" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-22" value="filteredRecipes = [...recipes]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="550" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-23" value="&lt;span style=&quot;background-color: rgb(255, 0, 128);&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; check if userInput" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="590" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-24" value="&lt;span style=&quot;background-color: rgb(255, 0, 128);&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; check if activeFilters" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="630" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-25" value="&lt;span style=&quot;background-color: rgb(255, 0, 128);&quot;&gt;mutate&lt;/span&gt; filteredRecipes = []" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="670" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2Jn9JWnAUsCylit9iHWN-26" value="displayRecipes(filteredRecipes)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="720" width="200" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
