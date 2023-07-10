@@ -1,16 +1,16 @@
 // Hasmaps of recipes by id, by ingredient, by utensil and by appliance
-let recipesById = {};
 let recipesByIngredient = {};
 let recipesByUstensil = {};
 let recipesByAppliance = {};
 
 function generateHashmap(recipes) {
-  console.log(recipes);
+  //Clear the hashmaps
+  recipesByIngredient = {};
+  recipesByUstensil = {};
+  recipesByAppliance = {};
+
   // Creates the hasmaps by iterating over recipes.js
   recipes.forEach((recipe) => {
-    // Creates a hashmap of recipes by id
-    recipesById[recipe.id] = recipe;
-    
     // Creates a hashmap of recipes by appliance
     const normalizedAppliance = recipe.appliance.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 

@@ -1,9 +1,9 @@
 import { BadgeFactory } from "./badgeFactory.js";
 
 export class SortInputFactory {
-  constructor(type, data) {
+  constructor(dataList, type) {
+    this.dataList = dataList;
     this.type = type;
-    this.data = data;
   }
 
   renderInput() {
@@ -11,17 +11,22 @@ export class SortInputFactory {
     const dropdownList = document.createElement("ul");
     const inputGroupWrapper = document.createElement("div");
     const input = document.createElement("input");
+   
+    // Clear the specific input group wrapper
+    const oldInputGroupWrapper = document.querySelector(`#${this.type}-input-group-wrapper`);
+    if (oldInputGroupWrapper) {
+      oldInputGroupWrapper.remove();
+    }
 
-    dropdownList.id = `${this.type}-list`;
+    dropdownList.id = `${this.type}-list`
     dropdownList.classList.add("dropdown-list", `${this.type}-list`);
-
+    
+    inputGroupWrapper.id = `${this.type}-input-group-wrapper`;
     inputGroupWrapper.classList.add("input-group__wrapper");
-
+    
     input.id = `${this.type}-input`;
     input.classList.add("input-dropdown");
-    input.placeholder = `${
-      this.type.charAt(0).toUpperCase() + this.type.slice(1)
-    }`;
+    input.placeholder = `${this.type.charAt(0).toUpperCase() + this.type.slice(1)}`;
 
     if (this.type === "ingredients") {
       input.classList.add("input-bg-blue");
@@ -37,29 +42,21 @@ export class SortInputFactory {
       dropdownList.classList.add("active");
     });
 
-    let blurTimeoutId; // Declare a variable to hold the timeout ID
-
+    //Delay the blur event to allow the user to click on the dropdown list
     input.addEventListener("blur", () => {
-      // Instead of immediately removing classes, set a timeout
-      blurTimeoutId = setTimeout(() => {
+      setTimeout(() => {
         input.classList.remove("active");
         dropdownList.classList.remove("active");
-      }, 100); // 100ms delay should be enough
+      }, 100);
     });
 
-    // When a mousedown event occurs on the dropdown, clear the timeout
-    dropdownList.addEventListener("mousedown", () => {
-      clearTimeout(blurTimeoutId);
-    });
-
-    inputGroupWrapper.appendChild(input);
+    inputGroupWrapper.appendChild(input);  
     inputGroupWrapper.appendChild(dropdownList);
 
     inputsWrapper.appendChild(inputGroupWrapper);
   }
 
-  renderListData(userInput) {
-    const dataList = this.data;
+  renderListData(dataList, userInput) {
     const dropdownList = document.querySelector(`.${this.type}-list`);
 
     dropdownList.innerHTML = "";

@@ -12,13 +12,10 @@ let activeFilters = {
   ustensils: [],
 };
 
-document.addEventListener("updateHashmap", (e) => {
-  console.log("hashmapUpdated");
-});
-
 document.addEventListener("updateSearchInput", (e) => {
   userInput = e.detail.userInput.toLowerCase();
   filterRecipes();
+  console.log(filteredRecipes, userInput);
 });
 
 document.addEventListener("updateActiveFilters", (e) => {
@@ -31,6 +28,7 @@ document.addEventListener("updateActiveFilters", (e) => {
   }
 
   filterRecipes();
+  console.log(filteredRecipes, userInput);
 });
 
 function displayRecipes(recipes) {
@@ -99,13 +97,14 @@ function filterRecipes() {
   }
 
   generateHashmap(filteredRecipes);
+  createsFilterInputs(recipesByIngredient, recipesByAppliance, recipesByUstensil);
   displayRecipes(filteredRecipes);
 }
 
 
 function init() {
   generateHashmap(recipes);
-  createsFilterInputs();
+  createsFilterInputs(recipesByIngredient, recipesByAppliance, recipesByUstensil);
   displayRecipes(recipes);
 }
 
