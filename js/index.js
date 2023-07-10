@@ -1,7 +1,7 @@
 import { RecipeFactory } from "./factories/recipeFactory.js";
 import { createsFilterInputs } from "./inputs.js";
 import { recipes } from "./recipes.js";
-import { recipesByIngredient, recipesByAppliance, recipesByUstensil } from "./initializeRecipeMaps.js";
+import { generateHashmap, recipesByIngredient, recipesByAppliance, recipesByUstensil } from "./initializeRecipeMaps.js";
 
 // Global variables
 let userInput = "";
@@ -11,6 +11,10 @@ let activeFilters = {
   appliances: [],
   ustensils: [],
 };
+
+document.addEventListener("updateHashmap", (e) => {
+  console.log("hashmapUpdated");
+});
 
 document.addEventListener("updateSearchInput", (e) => {
   userInput = e.detail.userInput.toLowerCase();
@@ -94,11 +98,13 @@ function filterRecipes() {
     });
   }
 
+  generateHashmap(filteredRecipes);
   displayRecipes(filteredRecipes);
 }
 
 
 function init() {
+  generateHashmap(recipes);
   createsFilterInputs();
   displayRecipes(recipes);
 }
