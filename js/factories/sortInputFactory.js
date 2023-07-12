@@ -87,7 +87,6 @@ export class SortInputFactory {
           new BadgeFactory(this.type, data).renderBadge();
           
           input.value = "";
-          this.renderListData("");
         });
       });
     } else {
@@ -112,7 +111,6 @@ export class SortInputFactory {
           new BadgeFactory(this.type, data).renderBadge();
 
           input.value = "";
-          this.renderListData("");
         });
       });
     }
