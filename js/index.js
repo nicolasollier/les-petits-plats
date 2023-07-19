@@ -23,7 +23,13 @@ document.addEventListener("updateActiveFilters", (e) => {
   if(activeFilters.hasOwnProperty(type) && action === "add") {
     activeFilters[type].push(data);
   } else if (activeFilters.hasOwnProperty(type) && action === "remove") {
-    activeFilters[type] = activeFilters[type].filter((filter) => filter !== data);
+    let newActiveFilters = [];
+    for(let i = 0; i < activeFilters[type].length; i++) {
+      if(activeFilters[type][i] !== data) {
+        newActiveFilters.push(activeFilters[type][i]);
+      }
+    }
+    activeFilters[type] = newActiveFilters;
   }
 
   filterRecipes();
@@ -51,10 +57,11 @@ function displayRecipes(recipes) {
     return;
   }
 
-  recipes.forEach((recipe) => {
+  for(let i = 0; i < recipes.length; i++) {
+    const recipe = recipes[i];
     const recipeFactory = new RecipeFactory(recipe);
     recipesSection.appendChild(recipeFactory.render());
-  });
+  }
 };
 
 function filterRecipes() {
@@ -62,43 +69,46 @@ function filterRecipes() {
 
   //Search if user input matches recipe name, description or ingredients
   if(userInput.length >= 3 || userInput.length === 0) {
-    filteredRecipes = filteredRecipes.filter((recipe) => {
-      const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredient);
-      return (
-        recipe.name.toLowerCase().includes(userInput) ||
+    let newFilteredRecipes = [];
+    for(let i = 0; i < filteredRecipes.length; i++) {
+      const recipe = filteredRecipes[i];
+      let recipeIngredients = [];
+      for(let j = 0; j < recipe.ingredients.length; j++) {
+        recipeIngredients.push(recipe.ingredients[j].ingredient);
+      }
+      if(recipe.name.toLowerCase().includes(userInput) ||
         recipe.description.toLowerCase().includes(userInput) ||
         recipeIngredients.some((ingredient) =>
           ingredient.toLowerCase().includes(userInput)
-        )
-      );
-    });
+        )) {
+        newFilteredRecipes.push(recipe);
+      }
+    }
+    filteredRecipes = newFilteredRecipes;
   }
 
   // Filter recipes by active filters
-  if (activeFilters.ingredients.length > 0) {
-    activeFilters.ingredients.forEach((ingredient) => {
-      const matchingRecipes = recipesByIngredient[ingredient];
-      filteredRecipes = filteredRecipes.filter(recipe => matchingRecipes.includes(recipe));
-    });
-  }
-  if (activeFilters.appliances.length > 0) {
-    activeFilters.appliances.forEach((appliance) => {
-      const matchingRecipes = recipesByAppliance[appliance];
-      filteredRecipes = filteredRecipes.filter(recipe => matchingRecipes.includes(recipe));
-    });
-  }
-  if (activeFilters.ustensils.length > 0) {
-    activeFilters.ustensils.forEach((ustensil) => {
-      const matchingRecipes = recipesByUstensil[ustensil];
-      filteredRecipes = filteredRecipes.filter(recipe => matchingRecipes.includes(recipe));
-    });
+  for(let filterType in activeFilters) {
+    if(activeFilters[filterType].length > 0) {
+      for(let i = 0; i < activeFilters[filterType].length; i++) {
+        const filter = activeFilters[filterType][i];
+        const matchingRecipes = recipesByIngredient[filter] || recipesByAppliance[filter] || recipesByUstensil[filter];
+        let newFilteredRecipes = [];
+        for(let j = 0; j < filteredRecipes.length; j++) {
+          const recipe = filteredRecipes[j];
+          if(matchingRecipes.includes(recipe)) {
+            newFilteredRecipes.push(recipe);
+          }
+        }
+        filteredRecipes = newFilteredRecipes;
+      }
+    }
   }
 
   generateHashmap(filteredRecipes);
   createsFilterInputs(recipesByIngredient, recipesByAppliance, recipesByUstensil);
   displayRecipes(filteredRecipes);
 }
-
 
 function init() {
   generateHashmap(recipes);
