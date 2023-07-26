@@ -26,6 +26,7 @@ document.addEventListener("updateActiveFilters", (e) => {
     activeFilters[type] = activeFilters[type].filter((filter) => filter !== data);
   }
 
+  generateHashmap(recipes);
   filterRecipes();
 });
 
@@ -57,23 +58,7 @@ function displayRecipes(recipes) {
   });
 };
 
-function filterRecipes() {
-  filteredRecipes = [...recipes];
-
-  //Search if user input matches recipe name, description or ingredients
-  if(userInput.length >= 3 || userInput.length === 0) {
-    filteredRecipes = filteredRecipes.filter((recipe) => {
-      const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredient);
-      return (
-        recipe.name.toLowerCase().includes(userInput) ||
-        recipe.description.toLowerCase().includes(userInput) ||
-        recipeIngredients.some((ingredient) =>
-          ingredient.toLowerCase().includes(userInput)
-        )
-      );
-    });
-  }
-
+function filterRecipesByActiveFilters() {
   // Filter recipes by active filters
   if (activeFilters.ingredients.length > 0) {
     activeFilters.ingredients.forEach((ingredient) => {
@@ -93,6 +78,26 @@ function filterRecipes() {
       filteredRecipes = filteredRecipes.filter(recipe => matchingRecipes.includes(recipe));
     });
   }
+}
+
+function filterRecipes() {
+  filteredRecipes = [...recipes];
+
+  //Search if user input matches recipe name, description or ingredients
+  if(userInput.length >= 3 || userInput.length === 0) {
+    filteredRecipes = filteredRecipes.filter((recipe) => {
+      const recipeIngredients = recipe.ingredients.map((ingredient) => ingredient.ingredient);
+      return (
+        recipe.name.toLowerCase().includes(userInput) ||
+        recipe.description.toLowerCase().includes(userInput) ||
+        recipeIngredients.some((ingredient) =>
+          ingredient.toLowerCase().includes(userInput)
+        )
+      );
+    });
+  }
+
+  filterRecipesByActiveFilters();
 
   generateHashmap(filteredRecipes);
   createsFilterInputs(recipesByIngredient, recipesByAppliance, recipesByUstensil);
