@@ -26,14 +26,16 @@ export class SortInputFactory {
     
     input.id = `${this.type}-input`;
     input.classList.add("input-dropdown");
-    input.placeholder = `${this.type.charAt(0).toUpperCase() + this.type.slice(1)}`;
 
     if (this.type === "ingredients") {
       input.classList.add("input-bg-blue");
+      input.placeholder = "Ingrédient";
     } else if (this.type === "appliances") {
       input.classList.add("input-bg-green");
+      input.placeholder = "Appareils";
     } else if (this.type === "ustensils") {
       input.classList.add("input-bg-orange");
+      input.placeholder = "Ustensiles";
     }
 
     //Toggle class when focus on input
