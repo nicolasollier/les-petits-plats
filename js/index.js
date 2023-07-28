@@ -23,15 +23,10 @@ document.addEventListener("updateActiveFilters", (e) => {
   if(activeFilters.hasOwnProperty(type) && action === "add") {
     activeFilters[type].push(data);
   } else if (activeFilters.hasOwnProperty(type) && action === "remove") {
-    let newActiveFilters = [];
-    for(let i = 0; i < activeFilters[type].length; i++) {
-      if(activeFilters[type][i] !== data) {
-        newActiveFilters.push(activeFilters[type][i]);
-      }
-    }
-    activeFilters[type] = newActiveFilters;
+    activeFilters[type] = activeFilters[type].filter((filter) => filter !== data);
   }
 
+  generateHashmap(recipes);
   filterRecipes();
 });
 
@@ -64,6 +59,26 @@ function displayRecipes(recipes) {
   }
 };
 
+function filterRecipesByActiveFilters() {
+  // Filter recipes by active filters
+  for(let filterType in activeFilters) {
+    if(activeFilters[filterType].length > 0) {
+      for(let i = 0; i < activeFilters[filterType].length; i++) {
+        const filter = activeFilters[filterType][i];
+        const matchingRecipes = recipesByIngredient[filter] || recipesByAppliance[filter] || recipesByUstensil[filter];
+        let newFilteredRecipes = [];
+        for(let j = 0; j < filteredRecipes.length; j++) {
+          const recipe = filteredRecipes[j];
+          if(matchingRecipes.includes(recipe)) {
+            newFilteredRecipes.push(recipe);
+          }
+        }
+        filteredRecipes = newFilteredRecipes;
+      }
+    }
+  }
+}
+
 function filterRecipes() {
   filteredRecipes = [...recipes];
 
@@ -87,23 +102,7 @@ function filterRecipes() {
     filteredRecipes = newFilteredRecipes;
   }
 
-  // Filter recipes by active filters
-  for(let filterType in activeFilters) {
-    if(activeFilters[filterType].length > 0) {
-      for(let i = 0; i < activeFilters[filterType].length; i++) {
-        const filter = activeFilters[filterType][i];
-        const matchingRecipes = recipesByIngredient[filter] || recipesByAppliance[filter] || recipesByUstensil[filter];
-        let newFilteredRecipes = [];
-        for(let j = 0; j < filteredRecipes.length; j++) {
-          const recipe = filteredRecipes[j];
-          if(matchingRecipes.includes(recipe)) {
-            newFilteredRecipes.push(recipe);
-          }
-        }
-        filteredRecipes = newFilteredRecipes;
-      }
-    }
-  }
+  filterRecipesByActiveFilters();
 
   generateHashmap(filteredRecipes);
   createsFilterInputs(recipesByIngredient, recipesByAppliance, recipesByUstensil);
